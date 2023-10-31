@@ -6,6 +6,7 @@ import QuizCore from '../core/QuizCore';
 const Quiz: React.FC = () => {
   const [selection, setSelection] = useState<string | null>(null);
   const [quizCore, _] =  useState<QuizCore>(new QuizCore);
+  const [forceUpdate, setForceUpdate] = useState(false);
 
   const handleOptionSelect = (option: string): void => {
     setSelection(option);
@@ -13,7 +14,8 @@ const Quiz: React.FC = () => {
 
 
   const handleButtonClick = (): void => {
-    // Task3: Implement the logic for button click, such as moving to the next question.
+    quizCore.nextQuestion();
+    setForceUpdate(!forceUpdate);
   } 
 
   const currentQuestion = quizCore.getCurrentQuestion();
